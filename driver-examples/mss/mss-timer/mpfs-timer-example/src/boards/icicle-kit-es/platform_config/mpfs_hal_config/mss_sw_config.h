@@ -161,7 +161,7 @@
  * The reason you may want to use below is to save code space.
  */
 #define SGMII_SUPPORT
-#define DDR_SUPPORT
+#define DDR_SUPPORT   // [mszp]: commenting this does NOT work
 #define MSSIO_SUPPORT
 
 /*
