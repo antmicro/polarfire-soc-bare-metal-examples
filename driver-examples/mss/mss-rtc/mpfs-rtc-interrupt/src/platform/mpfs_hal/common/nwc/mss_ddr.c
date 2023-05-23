@@ -14,6 +14,13 @@
  *
  */
 //#define PRINT_CA_VREF_WINDOW "1"
+
+// [mszp]: Due to missing tags this has to be defined
+//#define RENODE_DEBUG
+
+// [mszp]: Even if we pass the training, the DDR verification takes time (a lot of it)
+#define SKIP_VERIFY_PATTERN_IN_CACHE
+
 #define MOVE_CK
 #define MANUAL_ADDCMD_TRAINIG
 //#define FABRIC_NOISE_TEST
@@ -5544,7 +5551,8 @@ static void lpddr4_manual_training(DDR_TYPE ddr_type, uint8_t * refclk_sweep_ind
     DDRCFG->MC_BASE2.INIT_AUTOINIT_DISABLE.INIT_AUTOINIT_DISABLE=0x0U;
 
     volatile uint32_t timeout = 0U;
-    while((DDRCFG->MC_BASE2.INIT_ACK.INIT_ACK==0) && (timeout < 0xFFU))
+    // while((DDRCFG->MC_BASE2.INIT_ACK.INIT_ACK==0) && (timeout < 0xFFU))
+    while((DDRCFG->MC_BASE2.INIT_ACK.INIT_ACK==0) && (timeout < 0x1U))
     {
         delay(10U);
         timeout++;
